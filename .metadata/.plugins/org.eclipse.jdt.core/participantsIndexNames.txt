@@ -1,0 +1,3 @@
+INDEX VERSION 1.131
+C:\Users\¡ˆπŒ\πŸ≈¡ »≠∏È\TCPIPproject\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1860584325.index
+\Chatproject\src

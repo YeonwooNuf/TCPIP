@@ -10,7 +10,30 @@
 <title>채팅</title>
 </head>
 <body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+<!-- 	827d4f30a15338ad1ad51eb550f87cc2 -->
+	window.Kakao.init("827d4f30a15338ad1ad51eb550f87cc2");
 	
+	function kakaoLogin(){
+		window.Kakao.Auth.login({
+			scope:'profile_nickname, profile_image',
+			success: function(authObj){
+				console.log(authObj);
+				window.Kakao.API.request({
+					url:'/v2/user/me',
+					success: res => {
+						const kakao_account = res.kakao_account;
+						console.log(kakao_account);
+					}
+				});
+			}
+		});
+		
+	}
+
+</script>
+
 	<div class="container">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
@@ -30,6 +53,10 @@
 					
 					<div class="form-group">	
 					<a href="join.jsp" class="btn btn-primary form-control">회원가입</a>
+					</div>
+					<div class="form-group">
+					<a href="javascript:kakaoLogin();"><img src=".\img\kakao_login_medium_wide.png" alt="kakao"
+											style="height:34px; width:230px;" /></a>
 					</div>
 				</form>
 			</div>

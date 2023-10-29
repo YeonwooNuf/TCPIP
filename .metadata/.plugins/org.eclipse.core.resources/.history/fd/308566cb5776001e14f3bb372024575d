@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ page import="user.UserDAO" %>
+	<%@ page import="java.io.PrintWriter" %>
+	
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP 게시판 웹 사이트</title>
+</head>
+<body>
+	<%
+		session.invalidate();
+		%>
+		<script>
+		@Get('kakaoLogout')
+		kakaoLogout(@Res() res, @Req() req): void {
+		    //console.log(`LOGOUT TOKEN: ${this.kakaoLogin.accessToken}`);
+		    
+		    // 로그아웃
+		    this.kakaoLogin
+		        .deleteLog()
+		        .then((e) => {
+		            // 로그아웃 성공 시 Login.jsp 페이지로 리디렉션
+		            res.redirect('/Login.jsp');
+		        })
+		        .catch((e) => {
+		            console.log(e);
+		            return res.send('DELETE ERROR');
+		        });
+		}
+
+		
+			location.href = 'Login.jsp';
+		</script>
+</body>
+</html>

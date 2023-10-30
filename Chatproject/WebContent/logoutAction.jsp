@@ -14,24 +14,11 @@
 		session.invalidate();
 		%>
 		<script>
-		function kakaoLogout(kakaoKey){
-			Kakao.init(kakaoKey);
-			Kakao.isInitialized();
-			
-			if(Kakao.Auth.getAccessToken()){
-				console.log('Not logged in.');
-				return;
-			}
-			
-			Kakao.Auth.logout(function(){
-				console.log(Kakao.Auth.getAccessToken());
-			});
-			
-			
-		};
+		
+		location.href = 'Login.jsp';
+		
+		</script>
 
 		
-			location.href = 'Login.jsp';
-		</script>
 </body>
 </html>

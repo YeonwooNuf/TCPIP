@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ page import="user.UserDAO" %>
+	<%@ page import="java.io.PrintWriter" %>
+	
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP 게시판 웹 사이트</title>
+</head>
+<body>
+	<%
+		session.invalidate();
+		%>
+		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script>
+		// Kakao 플랫폼 초기화 및 인증 확인을 위한 함수
+		function kakaoLogout('827d4f30a15338ad1ad51eb550f87cc2') {
+		    // Kakao 초기화
+		    Kakao.init('827d4f30a15338ad1ad51eb550f87cc2');
+
+		    // Kakao 초기화 상태 확인
+		    Kakao.isInitialized(); 
+			
+		    // 이미 로그인되어 있는지 확인
+		    if (Kakao.Auth.getAccessToken()) {
+		        //console.log('Not logged in.'); // 이미 로그인되어 있으면 "Not logged in."을 출력하고 함수 종료
+		        return;
+		    }
+
+		    // Kakao 로그아웃
+		    Kakao.Auth.logout(function() {
+		        //console.log(Kakao.Auth.getAccessToken()); // 로그아웃 후 AccessToken을 출력
+		        sessionStorage.clear();
+		        window.location.href = 'Login.jsp';
+		    });
+		}
+
+		
+		</script>
+		<button onclick="kakaoLogout('827d4f30a15338ad1ad51eb550f87cc2')">카카오 로그아웃</button>
+		
+</body>
+</html>

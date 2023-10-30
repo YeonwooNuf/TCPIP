@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width" , initial-scale="1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+		// Kakao 플랫폼 초기화 및 인증 확인을 위한 함수
+		function kakaoLogout() {
+		    // Kakao 초기화
+		    Kakao.init("827d4f30a15338ad1ad51eb550f87cc2");
+
+		    // Kakao 초기화 상태 확인
+		    Kakao.isInitialized(); 
+			
+		    // 이미 로그인되어 있는지 확인
+		    if (Kakao.Auth.getAccessToken()) {
+		        //console.log('Not logged in.'); // 이미 로그인되어 있으면 "Not logged in."을 출력하고 함수 종료
+		        return;
+		    }
+
+		    // Kakao 로그아웃
+		    Kakao.Auth.logout(function() {
+		        //console.log(Kakao.Auth.getAccessToken()); // 로그아웃 후 AccessToken을 출력
+		        sessionStorage.clear();
+		        window.location.href = 'Login.jsp';
+		    });
+		}
+
+		
+		</script>
+
+
+<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">더보기<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="logoutAction.jsp">로그아웃</a></li>
+						<li><a href="javascript:kakaoLogout();">카카오회원로그아웃</a></li>
+					</ul>
+					
+				</li>
+			</ul>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

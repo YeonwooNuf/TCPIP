@@ -13,24 +13,31 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 <!-- 	827d4f30a15338ad1ad51eb550f87cc2 -->
-	window.Kakao.init("827d4f30a15338ad1ad51eb550f87cc2");
-	
-	function kakaoLogin(){
-		window.Kakao.Auth.login({
-			scope:'profile_nickname, profile_image',
-			success: function(authObj){
-				console.log(authObj);
-				window.Kakao.API.request({
-					url:'/v2/user/me',
-					success: res => {
-						const kakao_account = res.kakao_account;
-						console.log(kakao_account);
-					}
-				});
-			}
-		});
-		
-	}
+
+  window.Kakao.init("827d4f30a15338ad1ad51eb550f87cc2");
+
+  function kakaoLogin() {
+    window.Kakao.Auth.login({
+      scope: "profile_nickname, profile_image",
+      success: (authObj) => {
+        //console.log("authObj : ");
+       // console.log(authObj);
+
+        // 백한테 authobj 속 access토큰만 줌
+        // 그 후 authorize를 통해 확인
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success: (res) => {
+        	  location.href = 'chat.jsp';
+          },
+          fail: (res) => {
+            //console.log(res);
+          },
+        });
+      },
+    });
+  }
+
 
 </script>
 

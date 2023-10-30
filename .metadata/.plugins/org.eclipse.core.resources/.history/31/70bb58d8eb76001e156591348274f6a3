@@ -1,0 +1,102 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width" , initial-scale="1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
+<title>채팅</title>
+</head>
+<body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+<!-- 	827d4f30a15338ad1ad51eb550f87cc2 -->
+function kakaoLogin() {
+	  window.Kakao.init('827d4f30a15338ad1ad51eb550f87cc2');
+	  Kakao.isInitialized();
+	  function loginWithKakao() {
+	    Kakao.Auth.login({
+	      success : function(response) {
+	        Kakao.API.request({
+	          url:'/v2/user/me',
+	          success: function(result) {
+	            var accessToken = Kakao.Auth.getAccessToken(); // 액세스 토큰 할당
+	            Kakao.Auth.setAccessToken(accessToken); // 액세스 토큰 사용하게 등록
+
+	            // 필수 snsType, snsKey 
+	            params.form.append([
+	              $('<input />', {'type' : 'hidden', 'name' : 'snsKey' , 'value' : result.id}),
+	              $('<input />', {'type' : 'hidden', 'name' : 'snsType' , 'value' : 'kakaotalk'}),
+	              $('<input />', {'type' : 'hidden', 'name' : 'accessToken' , 'value' : accessToken})
+	            ]);
+
+	              // 추가 요청 값
+	              var dataArray = new Array();
+	              if (result.kakao_account) {
+	                $.each(result.kakao_account, function(key, val) {
+	                  if (typeof val == 'object') {
+	                    $.each(val, function(smallKey, smallVal) {
+	                      dataArray[smallKey] = smallVal;
+	                    });
+	                  } else {
+	                    dataArray[key] = val;
+	                  }
+	                });
+	              }
+
+	              $.each(params.request, function(key, val) {
+	                params.form.append($('<input />', {'type' : 'hidden', 'name' : val , 'value' : dataArray[val]}));
+	              });
+
+	              params.form.submit();
+	            },
+	            fail : function(error) {
+	              console.log('카카오톡과 연결이 완료되지 않았습니다. \n다시 시도해주시기 바랍니다.');
+	            }
+	          })
+	        },
+	        fail : function(error) {
+	          console.log('카카오톡과 연결 실패하였습니다. \n다시 시도해주시기 바랍니다.');
+	        },
+	      })  
+	    }
+	  };
+
+</script>
+
+	<div class="container">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<div class="jumbotron" style="padding-top: 20px;">
+				<form method="post" action="loginAction.jsp">
+					<h3 style="text-align:center;">로그인 화면</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20"> 
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20"> 
+					</div>
+					
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary form-control" value="로그인">
+					</div>
+					
+					<div class="form-group">	
+					<a href="join.jsp" class="btn btn-primary form-control">회원가입</a>
+					</div>
+					<div class="form-group">
+					<a href="javascript:kakaoLogin();"><img src=".\img\kakao_login_medium_wide.png" alt="kakao"
+											style="height:34px; width:230px;" /></a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	<%@ page import="user.UserDAO" %>
+	<%@ page import="java.io.PrintWriter" %>
+	
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JSP 게시판 웹 사이트</title>
+</head>
+<body>
+	<%
+		session.invalidate();
+		%>
+		<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+		<script>
+		 <button id="logoutButton">카카오 로그아웃</button>
+
+		    
+		        // Kakao SDK 초기화
+		        Kakao.init('YOUR_KAKAO_APP_KEY');
+
+		        // 로그아웃 버튼 클릭 시 실행할 함수
+		        document.getElementById('logoutButton').addEventListener('click', function () {
+		            Kakao.Auth.logout(function () {
+		                console.log('카카오 로그아웃 성공');
+		                window.location.href = 'Login.jsp'; // 로그아웃 후 리디렉션할 페이지
+		            });
+		        });
+		    
+
+			location.href = 'Login.jsp';
+		</script>
+</body>
+</html>

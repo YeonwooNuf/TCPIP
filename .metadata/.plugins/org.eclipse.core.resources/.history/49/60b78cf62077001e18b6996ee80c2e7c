@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width" , initial-scale="1">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/custom.css">
+<title>채팅</title>
+</head>
+<body>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+<!-- 	827d4f30a15338ad1ad51eb550f87cc2 -->
+
+  window.Kakao.init("827d4f30a15338ad1ad51eb550f87cc2");
+
+  function kakaoLogin() {
+    window.Kakao.Auth.login({
+      scope: "profile_nickname, profile_image",
+      success: (authObj) => {
+        console.log("authObj : ");
+        console.log(authObj);
+
+        // 백한테 authobj 속 access토큰만 줌
+        // 그 후 authorize를 통해 확인
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success: (res) => {
+        	  location.href = 'chat.jsp';
+          },
+          fail: (res) => {
+            console.log(res);
+          },
+        });
+      },
+    });
+  }
+
+
+</script>
+<!-- 배경화면 디자인 -->
+<style>
+body{
+	background-image:url('https://previews.123rf.com/images/tomo00/
+	tomo001702/tomo00170200222/72295266-%EB%B0%94%ED%83%95-
+	%ED%99%94%EB%A9%B4-%EB%B0%B0%EA%B2%BD-%EC%9E%90%EB%A3%8C-%EA%B5%AC%EB%A6%84
+	-%ED%8C%8C%EB%8F%84-%EA%B3%A1%EC%84%A0-%EB%B9%9B-%ED%99%94%EB%A0%A4%ED%95%9C-
+	%ED%8C%8C%ED%8B%B0-%EC%B4%88%EB%8C%80%EC%9E%A5-%EB%A1%9C%EA%B7%B8%EC%9D%B8-
+	%ED%94%84%EB%A0%88%EC%9E%84-%ED%94%84%EB%A0%8
+	8%EC%9E%84-%EC%9E%A5%EC%8B%9D%ED%92%88.jpg');
+}
+
+</style>
+
+	<div class="container">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<div class="jumbotron" style="padding-top: 20px;">
+				<form method="post" action="loginAction.jsp">
+					<h3 style="text-align:center;">로그인 화면</h3>
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="아이디" name="userID" maxlength="20"> 
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20"> 
+					</div>
+					
+					<div class="form-group">
+					<input type="submit" class="btn btn-primary form-control" value="로그인">
+					</div>
+					
+					<div class="form-group">	
+					<a href="join.jsp" class="btn btn-primary form-control">회원가입</a>
+					</div>
+					<div class="form-group">
+					<a href="javascript:kakaoLogin();"><img src=".\img\kakao_login_medium_wide.png" alt="kakao"
+											style="height:34px; width:230px;" /></a>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

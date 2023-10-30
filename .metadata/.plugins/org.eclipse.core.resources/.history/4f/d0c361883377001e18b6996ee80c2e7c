@@ -1,0 +1,14 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+*{
+	font-family:  'Nanum Gothic';
+}
+h1{
+	font-family: 'Hanna';
+}
+body {
+	background-color: red;
+ /*  background-image: url('https://png.pngtree.com/thumb_back/fw800/background/20230606/pngtree-portrait-of-a-dragon-s-head-in-pencil-and-ink-image_2888974.jpg'); */
+  background-size: cover; 배경 이미지가 화면에 가득 차도록 크기 조정
+  background-repeat: no-repeat; 배경 이미지 반복 없음
+} 

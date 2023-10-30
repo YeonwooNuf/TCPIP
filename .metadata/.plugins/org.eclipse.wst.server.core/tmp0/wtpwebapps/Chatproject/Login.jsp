@@ -20,8 +20,8 @@
     window.Kakao.Auth.login({
       scope: "profile_nickname, profile_image",
       success: (authObj) => {
-        //console.log("authObj : ");
-       // console.log(authObj);
+        console.log("authObj : ");
+        console.log(authObj);
 
         // 백한테 authobj 속 access토큰만 줌
         // 그 후 authorize를 통해 확인
@@ -31,7 +31,7 @@
         	  location.href = 'chat.jsp';
           },
           fail: (res) => {
-            //console.log(res);
+            console.log(res);
           },
         });
       },
@@ -40,11 +40,13 @@
 
 
 </script>
+<!-- 배경화면 디자인 -->
 
-	<div class="container">
+
+	<div class="container" style="padding-top: 150px;">
 		<div class="col-lg-4"></div>
 		<div class="col-lg-4">
-			<div class="jumbotron" style="padding-top: 20px;">
+			<div class="jumbotron" style="padding-top: 50px;">
 				<form method="post" action="loginAction.jsp">
 					<h3 style="text-align:center;">로그인 화면</h3>
 					<div class="form-group">

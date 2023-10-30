@@ -1,0 +1,14 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+*{
+	font-family:  'Nanum Gothic';
+}
+h1{
+	font-family: 'Hanna';
+}
+body {
+	
+ background-image: url('.\img\72295266-바탕-화면-배경-자료-구름-파도-곡선-빛-화려한-파티-초대장-로그인-프레임-프레임-장식품.jpg');
+  background-size: cover; 배경 이미지가 화면에 가득 차도록 크기 조정
+  background-repeat: no-repeat; 배경 이미지 반복 없음
+} 
